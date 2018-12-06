@@ -19,14 +19,13 @@
           var description = record.fields['Description'];
           html.push(listView(id, location, photos, description));
         });
-        $('body').append(html);
+        $('.list').append(html);
       }
     );
   }
   
   var getOneRecord = function(id) {
-    $.getJSON(`https://api.airtable.com/v0/apptXKhbkBHnU8Gmp/Parkour%20Spots%20in%20SF/${id}?api_key=keyS05nzMebuQX7Y3
-    `,
+    $.getJSON(`https://api.airtable.com/v0/apptXKhbkBHnU8Gmp/Parkour%20Spots%20in%20SF/${id}?api_key=keyS05nzMebuQX7Y3`,
       function(record){
         var html = [];
         var location = record.fields['Location'];
@@ -34,7 +33,8 @@
         var photos = record.fields['Photos'];
         var size = record.fields['Size'];
         html.push(detailView(location, description, photos, size));
-        $('body').append(html);
+        
+        $('.detail').append(html);
       }
     );
   }
@@ -47,7 +47,8 @@
     `;
   }
   
-  var detailView = function(location, description, size, photos) {
+  var detailView = function(location, description, photos, size) {
+    console.log(description)
     return `
       <h2>${location}</h2>
       <h2>${size}</h2>
